@@ -9,7 +9,7 @@
  *
  **/
 
-namespace Qwadmin\Controller;
+namespace Admin\Controller;
 
 use Vendor\Tree;
 

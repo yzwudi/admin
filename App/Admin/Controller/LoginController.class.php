@@ -9,9 +9,9 @@
  *
  **/
 
-namespace Qwadmin\Controller;
+namespace Admin\Controller;
 
-use Qwadmin\Controller\ComController;
+use Admin\Controller\ComController;
 
 class LoginController extends ComController
 {

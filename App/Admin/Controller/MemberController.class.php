@@ -9,7 +9,7 @@
  *
  **/
 
-namespace Qwadmin\Controller;
+namespace Admin\Controller;
 
 class MemberController extends ComController
 {

@@ -9,7 +9,7 @@
  *
  **/
 
-namespace Qwadmin\Controller;
+namespace Admin\Controller;
 
 class VariableController extends ComController
 {

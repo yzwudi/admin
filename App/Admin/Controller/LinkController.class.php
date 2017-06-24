@@ -5,42 +5,42 @@
  * 作    者：寒川<hanchuan@qiawei.com>
  * 日    期：2016-01-21
  * 版    本：1.0.0
- * 功能说明：焦点图。
+ * 功能说明：友情链接。
  *
  **/
 
-namespace Qwadmin\Controller;
+namespace Admin\Controller;
 
-class FlashController extends ComController
+class LinkController extends ComController
 {
 
-    //flash焦点图
+    //友情链接
     public function index()
     {
 
-        $list = M('flash')->order('o asc')->select();
+        $list = M('links')->order('o asc')->select();
         $this->assign('list', $list);
         $this->display();
     }
 
-    //新增焦点图
+    //新增链接
     public function add()
     {
 
         $this->display('form');
     }
 
-    //修改焦点图
+    //新增或修改链接
     public function edit($id = null)
     {
 
         $id = intval($id);
-        $flash = M('flash')->where('id=' . $id)->find();
-        $this->assign('flash', $flash);
+        $link = M('links')->where('id=' . $id)->find();
+        $this->assign('link', $link);
         $this->display('form');
     }
 
-    //删除焦点图
+    //删除链接
     public function del()
     {
 
@@ -52,8 +52,8 @@ class FlashController extends ComController
             } else {
                 $map = 'id=' . $ids;
             }
-            if (M('flash')->where($map)->delete()) {
-                addlog('删除焦点图，ID：' . $ids);
+            if (M('links')->where($map)->delete()) {
+                addlog('删除友情链接，ID：' . $ids);
                 $this->success('恭喜，删除成功！');
             } else {
                 $this->error('参数错误！');
@@ -63,7 +63,7 @@ class FlashController extends ComController
         }
     }
 
-    //保存焦点图
+    //保存链接
     public function update($id = 0)
     {
         $id = intval($id);
@@ -73,16 +73,16 @@ class FlashController extends ComController
         }
         $data['url'] = I('post.url', '', 'strip_tags');
         $data['o'] = I('post.o', '', 'strip_tags');
-        $data['pic'] = I('post.pic', '', 'strip_tags');
-        if ($data['pic'] == '') {
-            $this->error('请上传图片！');
+        $pic = I('post.logo', '', 'strip_tags');
+        if ($pic <> '') {
+            $data['logo'] = $pic;
         }
         if ($id) {
-            M('flash')->data($data)->where('id=' . $id)->save();
-            addlog('修改焦点图，ID：' . $id);
+            M('links')->data($data)->where('id=' . $id)->save();
+            addlog('修改友情链接，ID：' . $id);
         } else {
-            M('flash')->data($data)->add();
-            addlog('新增焦点图');
+            M('links')->data($data)->add();
+            addlog('新增友情链接');
         }
 
         $this->success('恭喜，操作成功！', U('index'));
